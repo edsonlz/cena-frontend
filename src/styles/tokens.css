@@ -1,0 +1,92 @@
+/*
+  Design tokens — mesma paleta do padrão Godi (armazem2/plataforma_godi).
+  Regra: os componentes NUNCA usam cor em hexadecimal direto, sempre
+  var(--token). Assim o modo escuro é só trocar os valores aqui.
+*/
+:root {
+  --fonte: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --fonte-mono: "Geist Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
+
+  --raio: 10px;
+  --raio-sm: 6px;
+  --raio-lg: 14px;
+
+  --fundo: #f8fafc;
+  --texto: #0f172a;
+  --texto-suave: #64748b;
+  --texto-fraco: #94a3b8;
+  --superficie: #ffffff;
+  --superficie-hover: #f1f5f9;
+  --borda: #e2e8f0;
+  --borda-forte: #cbd5e1;
+
+  --primaria: #2563eb;
+  --primaria-hover: #1d4ed8;
+  --primaria-suave: #eff6ff;
+  --primaria-borda: #bfdbfe;
+  --primaria-texto: #1d4ed8;
+  --sobre-primaria: #f8fafc;
+
+  --sucesso: #16a34a;
+  --sucesso-suave: #f0fdf4;
+  --sucesso-texto: #15803d;
+  --alerta: #f59e0b;
+  --alerta-suave: #fffbeb;
+  --alerta-texto: #b45309;
+  --perigo: #dc2626;
+  --perigo-suave: #fef2f2;
+  --perigo-texto: #b91c1c;
+
+  --sidebar: #eef2f6;
+  --sidebar-texto: #0f172a;
+  --sidebar-ativo: #e0eaff;
+  --sidebar-ativo-texto: #1d4ed8;
+
+  --sombra-sm: 0 1px 2px rgb(15 23 42 / 0.05);
+  --sombra: 0 1px 3px rgb(15 23 42 / 0.06), 0 4px 12px rgb(15 23 42 / 0.05);
+  --sombra-lg: 0 12px 32px rgb(15 23 42 / 0.14);
+  --foco: 0 0 0 3px rgb(37 99 235 / 0.35);
+
+  --transicao: 160ms cubic-bezier(0.2, 0, 0, 1);
+  color-scheme: light;
+}
+
+/* Modo escuro desenhado como tema próprio (não é inversão das cores claras). */
+:root[data-theme="dark"] {
+  --fundo: #0f1115;
+  --texto: #e6eaf0;
+  --texto-suave: #94a0b2;
+  --texto-fraco: #64708a;
+  --superficie: #151821;
+  --superficie-hover: #1c202b;
+  --borda: #252a35;
+  --borda-forte: #343b4a;
+
+  --primaria: #4f8ff7;
+  --primaria-hover: #6aa1f8;
+  --primaria-suave: #16233f;
+  --primaria-borda: #22396a;
+  --primaria-texto: #8cb6fb;
+  --sobre-primaria: #0f1115;
+
+  --sucesso: #22c55e;
+  --sucesso-suave: #0f2a1a;
+  --sucesso-texto: #4ade80;
+  --alerta: #f5a524;
+  --alerta-suave: #2d220c;
+  --alerta-texto: #fbbf24;
+  --perigo: #ef4444;
+  --perigo-suave: #2e1214;
+  --perigo-texto: #f87171;
+
+  --sidebar: #0b0d11;
+  --sidebar-texto: #dbe1ea;
+  --sidebar-ativo: #1a2333;
+  --sidebar-ativo-texto: #8cb6fb;
+
+  --sombra-sm: 0 1px 2px rgb(0 0 0 / 0.4);
+  --sombra: 0 1px 3px rgb(0 0 0 / 0.4), 0 4px 12px rgb(0 0 0 / 0.3);
+  --sombra-lg: 0 12px 32px rgb(0 0 0 / 0.55);
+  --foco: 0 0 0 3px rgb(79 143 247 / 0.45);
+  color-scheme: dark;
+}
