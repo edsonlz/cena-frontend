@@ -1,11 +1,12 @@
 import { useNavigate, useSearchParams, Link } from "react-router-dom";
-import { Search, UserPlus, Users, Crown, X } from "lucide-react";
+import { Search, UserPlus, Users, Crown, X, HeartHandshake, UserX } from "lucide-react";
 import { useBuscarDados } from "../../hooks/useBuscarDados";
 import { listarMembros } from "../../services/membroService";
 import { listarMinisterios } from "../../services/ministerioService";
 import { cargoService } from "../../services/cadastroService";
 import Tabela from "../../components/ui/Tabela";
 import Botao from "../../components/ui/Botao";
+import Indicador from "../../components/ui/Indicador";
 import { Avatar, CabecalhoPagina, EstadoVazio, LinhasCarregando, Aviso } from "../../components/ui/Basicos";
 import { mascaraTelefone, mascaraCpf, normalizar, somenteDigitos } from "../../utils/formatar";
 
@@ -51,6 +52,14 @@ function ListaMembros() {
   });
 
   const temFiltro = Boolean(busca || ministerio || cargo);
+
+  // Indicadores (sobre TODOS os membros, sem considerar os filtros).
+  // Contamos PESSOAS: cada membro entra uma vez só, mesmo que esteja
+  // em vários ministérios (ou seja líder em um e membro em outro).
+  const total = membros?.length ?? 0;
+  const emMinisterio = (membros ?? []).filter(m => m.ministerios.length > 0).length;
+  const semMinisterio = total - emMinisterio;
+  const percentual = total > 0 ? Math.round((emMinisterio / total) * 100) : 0;
 
   const colunas = [
     {
@@ -109,6 +118,26 @@ function ListaMembros() {
       </CabecalhoPagina>
 
       {erro && <Aviso tipo="perigo">{erro}</Aviso>}
+
+      <section className="indicadores indicadores--tres" aria-label="Resumo dos membros">
+        <Indicador icone={Users} rotulo="Membros cadastrados" valor={total} carregando={carregando} />
+        <Indicador
+          icone={HeartHandshake}
+          rotulo="Em algum ministério"
+          valor={emMinisterio}
+          detalhe={`${percentual}% dos membros`}
+          carregando={carregando}
+        />
+        <Indicador
+          icone={UserX}
+          rotulo="Sem nenhum ministério"
+          valor={semMinisterio}
+          detalhe={semMinisterio > 0 ? "Clique para ver quem são" : undefined}
+          carregando={carregando}
+          link={semMinisterio > 0 && "/membros?ministerio=nenhum"}
+          destaque={semMinisterio > 0}
+        />
+      </section>
 
       <section className="cartao">
         <div className="barra-ferramentas">

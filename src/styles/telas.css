@@ -35,7 +35,10 @@
 .indicador--link { transition: border-color var(--transicao), box-shadow var(--transicao); }
 .indicador--link:hover { text-decoration: none; border-color: var(--primaria-borda); box-shadow: var(--sombra); }
 .indicador--destaque .indicador__rotulo { color: var(--alerta-texto); }
+.indicadores--tres { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.indicador__detalhe { font-size: 0.8125rem; color: var(--texto-suave); }
 @media (max-width: 1000px) { .indicadores { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 640px) { .indicadores, .indicadores--tres { grid-template-columns: minmax(0, 1fr); } }
 
 .inicio__grade { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 16px; align-items: start; }
 @media (max-width: 900px) { .inicio__grade { grid-template-columns: 1fr; } }

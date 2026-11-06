@@ -4,6 +4,7 @@ import { useAuth } from "../hooks/useAuth";
 import { useBuscarDados } from "../hooks/useBuscarDados";
 import { buscarDashboard } from "../services/consultaService";
 import { Aviso, EstadoVazio } from "../components/ui/Basicos";
+import Indicador from "../components/ui/Indicador";
 import { mascaraTelefone, NOMES_MESES } from "../utils/formatar";
 
 // Página inicial. No GeneXus a Home mostrava cartões de exemplo do
@@ -93,20 +94,6 @@ function Inicio() {
       </div>
     </>
   );
-}
-
-// Cartão de número (stat tile). Com "link", o cartão inteiro é clicável.
-function Indicador({ icone: Icone, rotulo, valor, carregando, link, destaque }) {
-  const conteudo = (
-    <>
-      <span className="indicador__rotulo">
-        <Icone aria-hidden="true" /> {rotulo}
-      </span>
-      {carregando ? <span className="esqueleto" style={{ width: 64, height: 32 }} /> : <strong className="indicador__valor mono">{valor ?? "–"}</strong>}
-    </>
-  );
-  const classe = `indicador cartao ${destaque ? "indicador--destaque" : ""}`;
-  return link ? <Link to={link} className={`${classe} indicador--link`}>{conteudo}</Link> : <div className={classe}>{conteudo}</div>;
 }
 
 // Barras horizontais de uma série só: uma cor, valor escrito ao lado
