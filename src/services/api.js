@@ -32,6 +32,11 @@ export function definirAoExpirarSessao(funcao) {
   aoExpirarSessao = funcao;
 }
 
+// Endereço da API.
+//   - Em desenvolvimento (npm run dev) fica vazio: o proxy do Vite encaminha /api.
+//   - No build de produção vem do arquivo .env.production (VITE_API_URL).
+const API_URL = import.meta.env.VITE_API_URL || "";
+
 // Função central: faz o fetch, coloca o token, trata erro e converte o JSON.
 //   caminho -> ex.: "/membros" (o "/api" é colocado aqui)
 //   opcoes  -> { method, body, signal }. body pode ser um objeto: viramos JSON aqui.
@@ -45,7 +50,7 @@ export async function requisicao(caminho, opcoes = {}) {
 
   let resposta;
   try {
-    resposta = await fetch(`/api${caminho}`, {
+    resposta = await fetch(`${API_URL}/api${caminho}`, {
       ...resto,
       headers,
       body: body !== undefined ? JSON.stringify(body) : undefined
