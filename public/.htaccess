@@ -1,0 +1,12 @@
+# Regras do Apache (cPanel) para o React Router.
+# Sem isso, ao atualizar a página em /membros o servidor procura um arquivo
+# "membros" que não existe e dá 404. Aqui: se o arquivo/pasta não existir,
+# entrega o index.html e o React Router decide qual tela mostrar.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+  RewriteRule ^index\.html$ - [L]
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.html [L]
+</IfModule>
